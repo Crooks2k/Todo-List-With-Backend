@@ -1,0 +1,27 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "back-end for todo-list",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint"
+  },
+  "keywords": [],
+  "author": "Daniel Veloza | @Crooks2k  -  Sebas Sierra | @sesierras  -  Michel Torrealba | @Michel Torrealba",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.33.0",
+    "eslint-config": "^0.3.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.4"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.1"
+  }
+}
