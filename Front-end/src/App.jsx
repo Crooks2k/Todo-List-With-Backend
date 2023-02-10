@@ -1,46 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "./components/Form";
 import Section from "./components/Section";
 import List from "./components/List";
 import "./App.css"
 import swal from 'sweetalert';
-const appTitle = "| Todo-List With Backend |";
+import todos from "./apis";
 
-const list = [
-  { title: "test #1", completed: false, id: "1"},
-  { title: "test #2", completed: false, id: "2"},
-  { title: "test #3", completed: false, id: "3"}
-];
+const appTitle = "| Todo-List With Backend |";
 
 const App = () => {
 
-  const [todoList, setTodoList] = useState(list);
+  const [todoList, setTodoList] = useState([]);
 
-  const addTodo = (item) => {
-    setTodoList((oldlist) => [...oldlist, item]);
+  useEffect(() => { //req for backend to get info and save data in todoList state
+    async function fetchData() {
+        const { data } = await todos.get("/todos");
+        setTodoList(data);
+    }
+
+    fetchData();
+  }, []);
+
+  const editTodo = async (id, item) => {
+    await todos.put(`/todos/${id}`, item);
+};
+
+  const addTodo = async (item) => {
+    const { data } = await todos.post("/todos", item);
+    setTodoList((oldList) => [...oldList, data]);
   };
 
-  const removeTodo = (id) => {
-     //Sweet alert modals funct
-
-    swal({
-      title: "Estas seguro?",
-      text: "Una vez eliminada, tendras que crear tu nota nuevamente!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-        setTodoList((oldlist) => oldlist.filter((item) => item.id !== id) ) //remove note
+  const removeTodo = async (id) => {
+    // Sweet alert modal function
+  
+    try {
+      const willDelete = await swal({
+        title: "¿Estás seguro?",
+        text: "Una vez eliminada, tendrás que crear tu nota nuevamente!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      });
+  
+      if (willDelete) { //if user select delete > todos.delet send req for backend to delete note
+        await todos.delete(`/todos/${id}`);
+        setTodoList(oldList => oldList.filter(item => item._id !== id)); // remove note
+  
         swal("Tu nota fue eliminada correctamente", {
-          icon: "success",
+          icon: "success"
         });
-      } else {
+      } else { //if user select cancel, actions be stop
         swal("Cancelaste la eliminación de tu nota");
       }
-    });
-    
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return(
@@ -53,7 +67,7 @@ const App = () => {
         <Form addTodo={addTodo} />
       </Section>
       <Section>
-        <List removeTodoListProp={removeTodo} list={todoList} />
+        <List removeTodoListProp={removeTodo} list={todoList} editTodoListProp={editTodo}/>
       </Section>
     </div>
   ) 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Todo = ({ title, completed, removeTodoItemProp }) => {
+const Todo = ({ title, completed, removeTodoItemProp, editTodoItemProp }) => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [Value, setValue] = useState(title)
@@ -27,7 +27,11 @@ const Todo = ({ title, completed, removeTodoItemProp }) => {
     };
 
     const handleButtonClick = () =>{
-        setCompleted((oldcompleted) => !oldcompleted);
+        setCompleted((oldCompleted) => {
+            const newState = !oldCompleted;
+            editTodoItemProp({ completed: newState });
+            return newState;
+        });
     };
 
     return (
