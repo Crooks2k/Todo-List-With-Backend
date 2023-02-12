@@ -1,32 +1,31 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "Back-end/index.js",
-        "use": "@versel/node",
-        "config": {
-          "environment": {
-            "PORT": 3030,
-            "MONGO_URI": "${MONGO_URI}"
-          }
-        }
-      },
-      {
-        "src": "Front-end/src/main.jsx",
-        "use": "@versel/vite",
-        "config": {
-          "environment": {
-            "PORT": 8080
-          }
+  "version": 2,
+  "builds": [
+    {
+      "src": "Back-end/index.js",
+      "use": "@versel/node",
+      "config": {
+        "environment": {
+          "PORT": 3030,
+          "MONGO_URI": "${MONGO_URI}"
         }
       }
-    ],
-    "routes": [
-      {
-        "handle": "@versel/vite",
-        "src": "Front-end/src/main.jsx",
-        "dest": "/"
+    },
+    {
+      "src": "Front-end/src/main.jsx",
+      "use": "@versel/vite",
+      "config": {
+        "environment": {
+          "PORT": 8080
+        }
       }
-    ]
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "handle": "@versel/vite",
+      "src": "Front-end/src/main.jsx",
+      "dest": "/"
+    }
+  ]
+}
