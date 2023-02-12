@@ -14,8 +14,8 @@ const App = () => {
 
   useEffect(() => { //req for backend to get info and save data in todoList state
     async function fetchData() {
-        const { data } = await todos.get("/todos");
-        setTodoList(data);
+        const { data } = await todos.get("/todos"); //send get req to server on port 3030 to collection /todos
+        setTodoList(data);                            
     }
 
     fetchData();
@@ -26,8 +26,8 @@ const App = () => {
 };
 
   const addTodo = async (item) => {
-    const { data } = await todos.post("/todos", item);
-    setTodoList((oldList) => [...oldList, data]);
+    const { data } = await todos.post("/todos", item); //send post req to server on port 3030 to collection /todos
+    setTodoList((oldList) => [...oldList, data]); //create new note
   };
 
   const removeTodo = async (id) => {
@@ -43,7 +43,7 @@ const App = () => {
       });
   
       if (willDelete) { //if user select delete > todos.delet send req for backend to delete note
-        await todos.delete(`/todos/${id}`);
+        await todos.delete(`/todos/${id}`); //send delete req to server on port 3030 to collection /todos
         setTodoList(oldList => oldList.filter(item => item._id !== id)); // remove note
   
         swal("Tu nota fue eliminada correctamente", {
