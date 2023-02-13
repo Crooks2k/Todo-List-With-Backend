@@ -16,7 +16,7 @@ useNewUrlParser: true};
 app.use(express.json()); //Used to parse incoming or transform requests with JSON loads
 
 const corsOptions = {
-  origin: "https://todo-list-front-end-lyart.vercel.app/, https://todo-list-front-end-git-main-crooks2k.vercel.app/, https://todo-list-front-c8tu35mpa-crooks2k.vercel.app/, https://todo-list-front-end-crooks2k.vercel.app/",
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
   credentials: true
