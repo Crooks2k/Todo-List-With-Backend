@@ -6,7 +6,6 @@
       "use": "@versel/node",
       "config": {
         "environment": {
-          "PORT": 3030,
           "MONGO_URI": "${MONGO_URI}"
         }
       }
