@@ -22,7 +22,7 @@ const App = () => {
   }, []);
 
   const editTodo = async (id, item) => {
-    await todos.put(`/todos/${id}`, item);
+    await todos.put(`/todos/${id}`, item );
 };
 
   const addTodo = async (item) => {
