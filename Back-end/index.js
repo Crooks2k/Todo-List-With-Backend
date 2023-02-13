@@ -11,7 +11,6 @@ const todoRoutes = require("./routes/todoRoutes"); //requires the todoRoutes fil
 const connectionOptions = { useUnifiedTopology: true,
 useNewUrlParser: true};
 
-
 app.use(express.json()); //Used to parse incoming or transform requests with JSON loads
 
 //connect to mongo atlas(cluster) > todo(db) > todos (collection)
