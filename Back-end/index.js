@@ -23,7 +23,7 @@ mongoose.connect(mongoURI, connectionOptions)
 );
 // Responseheaders CORS (Cross-Origin Resource Sharing)thisconfig allows resources to be requested from a different domain
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://todo-list-front-end-lyart.vercel.app/");
+  res.header("Access-Control-Allow-Origin", "https://todo-list-front-end-lyart.vercel.app/, https://todo-list-front-end-git-main-crooks2k.vercel.app/, https://todo-list-front-c8tu35mpa-crooks2k.vercel.app/, https://todo-list-front-end-crooks2k.vercel.app/");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE") // Allow-Methods header to "GET, POST, PUT, DELETE"
   res.header(
     "Access-Control-Allow-Headers",
